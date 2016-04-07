@@ -1,23 +1,14 @@
 OFMCanberra Example Cookbook
 ====================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+An example cookbook of how to install BPM 12.2.1 on Java Cloud Service instance on the Oracle Cloud Cloud Platform. This is primarily built from cookbooks from the [oralce chef-samples](https://github.com/oracle/chef-samples), but tailored (and simplified) to support the Oracle Cloud. This is only an example, so you may want to take this inspiration and use it's concepts in your cookbook, rather than rely on this 'beta' code. 
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
-#### packages
-- `toaster` - ofmcanberra_example needs toaster to brown your bagel.
+This will only run a 12.2.1 instance on the JCS. It expects certain folders and scripts to exist. It also FTPs the binaries from a central FTP server, so you will need to set one up in your cloud (or point it somewhere else) and modify the hard-coded FTP address. 
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
-
-e.g.
+The following attributes need to be set. If you run this via the (knife-oraclepaas)[https://github.com/Joelith/knife-oraclepaas] plugin in a `java create` or `stack build` command these will be automatically filled in. See below for example on how to run this
 #### ofmcanberra_example::default
 <table>
   <tr>
@@ -27,19 +18,46 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['ofmcanberra_example']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['oracle']['service_name']</tt></td>
+    <td>String</td>
+    <td>The service name of the instance</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><tt>['oracle']['db_service_name']</tt></td>
+    <td>String</td>
+    <td>The service name of the database instance this JCS connects to (used by the RCU script to add the schemas to support SOA/BPM)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><tt>['oracle']['dba_name']</tt></td>
+    <td>String</td>
+    <td>The name of the db user to connect RCU as (usually SYS)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><tt>['oracle']['dba_password']</tt></td>
+    <td>String</td>
+    <td>The password of the db user to connect RCU. Note: At the moment this is sent in plain-text and not encrypted</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><tt>['oracle']['identity_domain']</tt></td>
+    <td>String</td>
+    <td>Your identity domain. This is used to build URLs in the server correctly</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><tt>['oracle']['weblogic_password']</tt></td>
+    <td>String</td>
+    <td>The password of the weblogic password. Note: At the moment this is sent in plain-text and not encrypted. Plus it assumes there is a weblogic user</td>
+    <td></td>
   </tr>
 </table>
 
 Usage
 -----
 #### ofmcanberra_example::default
-TODO: Write usage instructions for each cookbook.
-
-e.g.
 Just include `ofmcanberra_example` in your node's `run_list`:
 
 ```json
@@ -51,18 +69,7 @@ Just include `ofmcanberra_example` in your node's `run_list`:
 }
 ```
 
-Contributing
-------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
-
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Joel Nation
+Copyright: Oracle Corporation, 2016
