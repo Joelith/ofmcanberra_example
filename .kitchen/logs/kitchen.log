@@ -1,0 +1,3 @@
+I, [2016-04-03T10:20:04.866463 #79912]  INFO -- Kitchen: -----> Starting Kitchen (v1.5.0)
+I, [2016-04-03T10:20:55.378826 #79912]  INFO -- Kitchen: -----> Destroying <default-oel-67>...
+I, [2016-04-03T10:23:49.562826 #79912]  INFO -- Kitchen: -----> Kitchen is finished. (3m44.18s)
